@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support ROM Development - Roshan0746</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .heart-icon {
+            font-size: 3rem;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .title {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .donation-methods {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .method-category {
+            margin-bottom: 30px;
+        }
+        
+        .category-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .donation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .donation-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 25px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+        
+        .donation-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .donation-btn:hover::before {
+            left: 100%;
+        }
+        
+        .donation-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .kofi-btn {
+            background: linear-gradient(45deg, #ff5f56, #ff9a56);
+            box-shadow: 0 8px 16px rgba(255, 95, 86, 0.3);
+        }
+        
+        .kofi-btn:hover {
+            box-shadow: 0 12px 24px rgba(255, 95, 86, 0.4);
+        }
+        
+        .paypal-btn {
+            background: linear-gradient(45deg, #0070ba, #003087);
+            box-shadow: 0 8px 16px rgba(0, 112, 186, 0.3);
+        }
+        
+        .paypal-btn:hover {
+            box-shadow: 0 12px 24px rgba(0, 112, 186, 0.4);
+        }
+        
+        .upi-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.3);
+        }
+        
+        .upi-btn:hover {
+            box-shadow: 0 12px 24px rgba(76, 175, 80, 0.4);
+        }
+        
+        .gpay-btn {
+            background: linear-gradient(45deg, #4285f4, #34a853);
+            box-shadow: 0 8px 16px rgba(66, 133, 244, 0.3);
+        }
+        
+        .gpay-btn:hover {
+            box-shadow: 0 12px 24px rgba(66, 133, 244, 0.4);
+        }
+        
+        .crypto-btn {
+            background: linear-gradient(45deg, #f7931a, #ffb347);
+            box-shadow: 0 8px 16px rgba(247, 147, 26, 0.3);
+        }
+        
+        .crypto-btn:hover {
+            box-shadow: 0 12px 24px rgba(247, 147, 26, 0.4);
+        }
+        
+        .icon {
+            font-size: 1.4rem;
+        }
+        
+        .copy-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 25px;
+        }
+        
+        .copy-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .copy-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .copy-btn.copied {
+            background: #4CAF50;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .sparkle {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        .sparkle:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 25%; right: 15%; animation-delay: 0.7s; }
+        .sparkle:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 1.4s; }
+        .sparkle:nth-child(4) { bottom: 45%; right: 10%; animation-delay: 2.1s; }
+        
+        @media (max-width: 640px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .donation-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .donation-btn {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+            
+            .copy-item {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sparkle">✨</div>
+        <div class="sparkle">💫</div>
+        <div class="sparkle">⭐</div>
+        <div class="sparkle">✨</div>
+        
+        <div class="header">
+            <div class="heart-icon">💖</div>
+            <h1 class="title">Support ROM Development</h1>
+            <p class="subtitle">by Roshan0746</p>
+            <div class="description">
+                Suka dengan ROM ini? Dukungan Anda sangat berarti untuk pengembangan ROM yang lebih baik dan update yang konsisten! 
+                Pilih metode donasi yang paling nyaman untuk Anda.
+            </div>
+        </div>
+        
+        <div class="donation-methods">
+            <div class="method-category">
+                <h2 class="category-title">🌍 International Donations</h2>
+                <div class="donation-grid">
+                    <a href="https://ko-fi.com/roshan0746" class="donation-btn kofi-btn">
+                        <span class="icon">☕</span>
+                        <span>Ko-fi</span>
+                    </a>
+                    <a href="#" class="donation-btn paypal-btn">
+                        <span class="icon">💳</span>
+                        <span>PayPal</span>
+                    </a>
+                    <a href="#" class="donation-btn crypto-btn">
+                        <span class="icon">₿</span>
+                        <span>Crypto</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="method-category">
+                <h2 class="category-title">🇮🇳 Indian Donations</h2>
+                <div class="donation-grid">
+                    <a href="upi://pay?pa=rsagvekar36-4@okhdfcbank" class="donation-btn upi-btn">
+                        <span class="icon">🏦</span>
+                        <span>UPI Payment</span>
+                    </a>
+                    <a href="gpay://upi/pay?pa=rsagvekar36-4@okhdfcbank" class="donation-btn gpay-btn">
+                        <span class="icon">📱</span>
+                        <span>Google Pay</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="copy-section">
+                <h3 class="copy-title">📋 Copy Payment Details</h3>
+                <div class="copy-item">
+                    <span>UPI ID: rsagvekar36-4@okhdfcbank</span>
+                    <button class="copy-btn" onclick="copyToClipboard('rsagvekar36-4@okhdfcbank', this)">Copy</button>
+                </div>
+                <div class="copy-item">
+                    <span>Ko-fi: ko-fi.com/roshan0746</span>
+                    <button class="copy-btn" onclick="copyToClipboard('https://ko-fi.com/roshan0746', this)">Copy</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p class="footer-text">
+                <strong>Terima kasih atas dukungan Anda!</strong><br>
+                Setiap donasi membantu saya untuk terus mengembangkan ROM berkualitas tinggi 🙏
+            </p>
+            
+            <div class="social-links">
+                <a href="#" class="social-btn">📧</a>
+                <a href="#" class="social-btn">📱</a>
+                <a href="#" class="social-btn">🌐</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(function() {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(function() {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(function() {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(function() {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
