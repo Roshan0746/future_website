@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support ROM Development - Roshan0746</title>
+    <title>Support ROM Development - Khaliq & Roshan</title>
     <style>
         * {
             margin: 0;
@@ -80,6 +80,16 @@
             color: rgba(255, 255, 255, 0.9);
             font-size: 1.2rem;
             margin-bottom: 20px;
+        }
+        
+        .developers {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .description {
@@ -181,22 +191,31 @@
             box-shadow: 0 12px 24px rgba(76, 175, 80, 0.4);
         }
         
-        .gpay-btn {
-            background: linear-gradient(45deg, #4285f4, #34a853);
-            box-shadow: 0 8px 16px rgba(66, 133, 244, 0.3);
+        .mandiri-btn {
+            background: linear-gradient(45deg, #1e3a8a, #3b82f6);
+            box-shadow: 0 8px 16px rgba(30, 58, 138, 0.3);
         }
         
-        .gpay-btn:hover {
-            box-shadow: 0 12px 24px rgba(66, 133, 244, 0.4);
+        .mandiri-btn:hover {
+            box-shadow: 0 12px 24px rgba(30, 58, 138, 0.4);
         }
         
-        .crypto-btn {
-            background: linear-gradient(45deg, #f7931a, #ffb347);
-            box-shadow: 0 8px 16px rgba(247, 147, 26, 0.3);
+        .seabank-btn {
+            background: linear-gradient(45deg, #059669, #10b981);
+            box-shadow: 0 8px 16px rgba(5, 150, 105, 0.3);
         }
         
-        .crypto-btn:hover {
-            box-shadow: 0 12px 24px rgba(247, 147, 26, 0.4);
+        .seabank-btn:hover {
+            box-shadow: 0 12px 24px rgba(5, 150, 105, 0.4);
+        }
+        
+        .dana-btn {
+            background: linear-gradient(45deg, #2563eb, #60a5fa);
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+        }
+        
+        .dana-btn:hover {
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.4);
         }
         
         .icon {
@@ -259,6 +278,77 @@
             color: rgba(255, 255, 255, 0.8);
             font-size: 1rem;
             margin-bottom: 15px;
+        }
+        
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .contact-section {
+            margin-bottom: 15px;
+        }
+        
+        .contact-title {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .contact-item {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .contact-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .email-btn {
+            background: linear-gradient(45deg, #ea4335, #fbbc04);
+        }
+        
+        .telegram-btn {
+            background: linear-gradient(45deg, #0088cc, #229ed9);
+        }
+        
+        .github-btn {
+            background: linear-gradient(45deg, #333, #24292e);
+        }
+        
+        .contact-logo {
+            width: 16px;
+            height: 16px;
+            filter: brightness(0) invert(1);
         }
         
         .social-links {
@@ -327,6 +417,17 @@
                 gap: 10px;
                 text-align: center;
             }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -340,10 +441,14 @@
         <div class="header">
             <div class="heart-icon">💖</div>
             <h1 class="title">Support ROM Development</h1>
-            <p class="subtitle">by Roshan0746</p>
+            <p class="subtitle">Morpheus Project</p>
+            <div class="developers">
+                <strong>Developers:</strong> Khaliq & Roshan
+            </div>
             <div class="description">
-                Suka dengan ROM ini? Dukungan Anda sangat berarti untuk pengembangan ROM yang lebih baik dan update yang konsisten! 
-                Pilih metode donasi yang paling nyaman untuk Anda.
+                Love our Projecy? Your support means the world to us! 
+                Help us continue developing high-quality ROMs with consistent updates and new features.
+                Choose your preferred donation method below.
             </div>
         </div>
         
@@ -351,32 +456,36 @@
             <div class="method-category">
                 <h2 class="category-title">🌍 International Donations</h2>
                 <div class="donation-grid">
-                    <a href="https://ko-fi.com/roshan0746" class="donation-btn kofi-btn">
+                    <button class="donation-btn kofi-btn" onclick="openLink('https://ko-fi.com/roshan0746')">
                         <span class="icon">☕</span>
-                        <span>Ko-fi</span>
-                    </a>
-                    <a href="#" class="donation-btn paypal-btn">
+                        <span>Buy us a Coffee</span>
+                    </button>
+                    <button class="donation-btn paypal-btn" onclick="openLink('https://paypal.me/Roshan0746?country.x=IN&locale.x=en_GB')">
                         <span class="icon">💳</span>
                         <span>PayPal</span>
-                    </a>
-                    <a href="#" class="donation-btn crypto-btn">
-                        <span class="icon">₿</span>
-                        <span>Crypto</span>
-                    </a>
+                    </button>
                 </div>
             </div>
             
             <div class="method-category">
-                <h2 class="category-title">🇮🇳 Indian Donations</h2>
+                <h2 class="category-title">🇲🇨 Indonesian & 🇮🇳 Indian Donations</h2>
                 <div class="donation-grid">
-                    <a href="upi://pay?pa=rsagvekar36-4@okhdfcbank" class="donation-btn upi-btn">
+                    <button class="donation-btn upi-btn" onclick="openLink('upi://pay?pa=rsagvekar36-4@okhdfcbank')">
                         <span class="icon">🏦</span>
                         <span>UPI Payment</span>
-                    </a>
-                    <a href="gpay://upi/pay?pa=rsagvekar36-4@okhdfcbank" class="donation-btn gpay-btn">
-                        <span class="icon">📱</span>
-                        <span>Google Pay</span>
-                    </a>
+                    </button>
+                    <button class="donation-btn mandiri-btn" onclick="copyToClipboard('1820016018186', this)">
+                        <span class="icon">🏧</span>
+                        <span>Bank Mandiri</span>
+                    </button>
+                    <button class="donation-btn seabank-btn" onclick="copyToClipboard('901390271248', this)">
+                        <span class="icon">🏦</span>
+                        <span>SeaBank</span>
+                    </button>
+                    <button class="donation-btn dana-btn" onclick="copyToClipboard('082258901971', this)">
+                        <span class="icon">💰</span>
+                        <span>DANA</span>
+                    </button>
                 </div>
             </div>
             
@@ -387,33 +496,96 @@
                     <button class="copy-btn" onclick="copyToClipboard('rsagvekar36-4@okhdfcbank', this)">Copy</button>
                 </div>
                 <div class="copy-item">
-                    <span>Ko-fi: ko-fi.com/roshan0746</span>
-                    <button class="copy-btn" onclick="copyToClipboard('https://ko-fi.com/roshan0746', this)">Copy</button>
+                    <span>Bank Mandiri: 1820016018186</span>
+                    <button class="copy-btn" onclick="copyToClipboard('1820016018186', this)">Copy</button>
+                </div>
+                <div class="copy-item">
+                    <span>SeaBank: 901390271248</span>
+                    <button class="copy-btn" onclick="copyToClipboard('901390271248', this)">Copy</button>
+                </div>
+                <div class="copy-item">
+                    <span>DANA: 082258901971</span>
+                    <button class="copy-btn" onclick="copyToClipboard('082258901971', this)">Copy</button>
                 </div>
             </div>
         </div>
         
         <div class="footer">
-            <p class="footer-text">
-                <strong>Terima kasih atas dukungan Anda!</strong><br>
-                Setiap donasi membantu saya untuk terus mengembangkan ROM berkualitas tinggi 🙏
-            </p>
-            
-            <div class="social-links">
-                <a href="#" class="social-btn">📧</a>
-                <a href="#" class="social-btn">📱</a>
-                <a href="#" class="social-btn">🌐</a>
+            <div class="contact-info">
+                <div class="contact-section">
+                    <div class="contact-title">📧 Contact Us</div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn email-btn" onclick="openLink('mailto:rsagvekar36@gmail.com')">
+                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            <span>Email Roshan</span>
+                        </button>
+                        <button class="contact-btn email-btn" onclick="openLink('mailto:bias.khaliq@gmail.com')">
+                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            <span>Email Bias</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="contact-section">
+                    <div class="contact-title">💬 Telegram</div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn telegram-btn" onclick="openLink('https://t.me/roshan_0746')">
+                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                            </svg>
+                            <span>Support Sunfish</span>
+                        </button>
+                        <button class="contact-btn telegram-btn" onclick="openLink('https://t.me/pixel4seriesofficial')">
+                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                            </svg>
+                            <span>Pixel 4 Series</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="contact-section">
+                    <div class="contact-title">🛠️ GitHub</div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn github-btn" onclick="openLink('https://github.com/Bias8145')">
+                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            <span>Bias GitHub</span>
+                        </button>
+                        <button class="contact-btn github-btn" onclick="openLink('https://github.com/Roshan0746')">
+                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            <span>Roshan GitHub</span>
+                        </button>
+                    </div>
+                </div>
             </div>
+            
+            <p class="footer-text">
+                <strong>Thank you for your support!</strong><br>
+                Every donation helps us continue developing amazing ROMs for the community 🙏
+            </p>
         </div>
     </div>
     
     <script>
+        function openLink(url) {
+            window.open(url, '_blank');
+        }
+        
         function copyToClipboard(text, button) {
             navigator.clipboard.writeText(text).then(function() {
-                button.textContent = 'Copied!';
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<span class="icon">✅</span><span>Copied!</span>';
                 button.classList.add('copied');
                 setTimeout(function() {
-                    button.textContent = 'Copy';
+                    button.innerHTML = originalHTML;
                     button.classList.remove('copied');
                 }, 2000);
             }).catch(function() {
@@ -425,10 +597,11 @@
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
                 
-                button.textContent = 'Copied!';
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<span class="icon">✅</span><span>Copied!</span>';
                 button.classList.add('copied');
                 setTimeout(function() {
-                    button.textContent = 'Copy';
+                    button.innerHTML = originalHTML;
                     button.classList.remove('copied');
                 }, 2000);
             });
