@@ -13,33 +13,162 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #d4b896 0%, #c4a484 25%, #b8956f 50%, #a8865f 75%, #9d7a56 100%);
             min-height: 100vh;
-            padding: 20px;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+        }
+        
+        /* Hamburger Menu */
+        .hamburger {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(139, 115, 85, 0.9);
+            border: none;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger:hover {
+            background: rgba(139, 115, 85, 1);
+            transform: scale(1.05);
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+        
+        /* Sidebar Menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: linear-gradient(180deg, #c8a882 0%, #b8956f 50%, #a8865f 100%);
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+            padding: 80px 30px 30px;
+        }
+        
+        .sidebar.active {
+            right: 0;
+        }
+        
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+            backdrop-filter: blur(5px);
+        }
+        
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 40px;
+        }
+        
+        .sidebar-title {
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: left;
+        }
+        
+        .sidebar-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .sidebar-item .icon {
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+        
+        /* Main Content - Hero Section */
+        .hero {
+            text-align: center;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             border-radius: 20px;
-            padding: 40px;
+            padding: 60px 40px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             overflow: hidden;
         }
         
-        .container::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
             animation: rotate 20s linear infinite;
             pointer-events: none;
         }
@@ -49,18 +178,11 @@
             100% { transform: rotate(360deg); }
         }
         
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
-        }
-        
         .heart-icon {
-            font-size: 3rem;
-            color: #ff6b6b;
+            font-size: 4rem;
+            color: #d4705a;
             margin-bottom: 20px;
-            animation: heartbeat 1.5s ease-in-out infinite;
+            animation: heartbeat 2s ease-in-out infinite;
         }
         
         @keyframes heartbeat {
@@ -68,537 +190,366 @@
             50% { transform: scale(1.1); }
         }
         
-        .title {
+        .hero-title {
             color: white;
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
             margin-bottom: 15px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
         }
         
-        .subtitle {
+        .hero-subtitle {
             color: rgba(255, 255, 255, 0.9);
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
         }
         
         .developers {
             color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .description {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-            margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .donation-methods {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .method-category {
-            margin-bottom: 30px;
-        }
-        
-        .category-title {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-align: center;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .donation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .donation-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 18px 25px;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            color: white;
-        }
-        
-        .donation-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .donation-btn:hover::before {
-            left: 100%;
-        }
-        
-        .donation-btn:hover {
-            transform: translateY(-3px);
-        }
-        
-        .kofi-btn {
-            background: linear-gradient(45deg, #ff5f56, #ff9a56);
-            box-shadow: 0 8px 16px rgba(255, 95, 86, 0.3);
-        }
-        
-        .kofi-btn:hover {
-            box-shadow: 0 12px 24px rgba(255, 95, 86, 0.4);
-        }
-        
-        .paypal-btn {
-            background: linear-gradient(45deg, #0070ba, #003087);
-            box-shadow: 0 8px 16px rgba(0, 112, 186, 0.3);
-        }
-        
-        .paypal-btn:hover {
-            box-shadow: 0 12px 24px rgba(0, 112, 186, 0.4);
-        }
-        
-        .upi-btn {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.3);
-        }
-        
-        .upi-btn:hover {
-            box-shadow: 0 12px 24px rgba(76, 175, 80, 0.4);
-        }
-        
-        .mandiri-btn {
-            background: linear-gradient(45deg, #1e3a8a, #3b82f6);
-            box-shadow: 0 8px 16px rgba(30, 58, 138, 0.3);
-        }
-        
-        .mandiri-btn:hover {
-            box-shadow: 0 12px 24px rgba(30, 58, 138, 0.4);
-        }
-        
-        .seabank-btn {
-            background: linear-gradient(45deg, #059669, #10b981);
-            box-shadow: 0 8px 16px rgba(5, 150, 105, 0.3);
-        }
-        
-        .seabank-btn:hover {
-            box-shadow: 0 12px 24px rgba(5, 150, 105, 0.4);
-        }
-        
-        .dana-btn {
-            background: linear-gradient(45deg, #2563eb, #60a5fa);
-            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
-        }
-        
-        .dana-btn:hover {
-            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.4);
-        }
-        
-        .icon {
-            font-size: 1.4rem;
-        }
-        
-        .copy-section {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 25px;
-        }
-        
-        .copy-title {
-            color: white;
             font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .copy-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .copy-btn {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        
-        .copy-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .copy-btn.copied {
-            background: #4CAF50;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .footer-text {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-            margin-bottom: 15px;
-        }
-        
-        .contact-info {
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
         }
         
-        .contact-section {
-            margin-bottom: 15px;
-        }
-        
-        .contact-title {
-            color: white;
+        .hero-description {
+            color: rgba(255, 255, 255, 0.85);
             font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 40px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
         }
         
-        .contact-item {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-        }
-        
-        .contact-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        
-        .contact-btn {
-            display: flex;
+        .cta-button {
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 15px;
-            background: rgba(255, 255, 255, 0.2);
+            gap: 12px;
+            padding: 18px 35px;
+            background: linear-gradient(45deg, #8b7355, #a8865f);
             color: white;
             border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 16px rgba(139, 115, 85, 0.3);
+            position: relative;
+            z-index: 1;
         }
         
-        .contact-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(139, 115, 85, 0.4);
         }
         
-        .email-btn {
-            background: linear-gradient(45deg, #ea4335, #fbbc04);
-        }
-        
-        .telegram-btn {
-            background: linear-gradient(45deg, #0088cc, #229ed9);
-        }
-        
-        .github-btn {
-            background: linear-gradient(45deg, #333, #24292e);
-        }
-        
-        .contact-logo {
-            width: 16px;
-            height: 16px;
-            filter: brightness(0) invert(1);
-        }
-        
-        .social-links {
+        /* Quick Contact Icons */
+        .quick-contact {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            justify-content: center;
             gap: 15px;
-            margin-top: 20px;
+            z-index: 500;
         }
         
-        .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .contact-icon {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(139, 115, 85, 0.9);
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
         
-        .social-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
+        .contact-icon:hover {
+            transform: translateY(-5px);
+            background: rgba(139, 115, 85, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
         
+        .contact-icon::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .contact-icon:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Sparkle Animation */
         .sparkle {
             position: absolute;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1rem;
-            animation: sparkle 2s ease-in-out infinite;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 1.2rem;
+            animation: sparkle 3s ease-in-out infinite;
+            pointer-events: none;
         }
         
         @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: 1; transform: scale(1); }
+            0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
         }
         
-        .sparkle:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
-        .sparkle:nth-child(2) { top: 25%; right: 15%; animation-delay: 0.7s; }
-        .sparkle:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 1.4s; }
-        .sparkle:nth-child(4) { bottom: 45%; right: 10%; animation-delay: 2.1s; }
+        .sparkle:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 20%; right: 20%; animation-delay: 1s; }
+        .sparkle:nth-child(3) { bottom: 25%; left: 10%; animation-delay: 2s; }
+        .sparkle:nth-child(4) { bottom: 15%; right: 15%; animation-delay: 0.5s; }
+        .sparkle:nth-child(5) { top: 50%; left: 5%; animation-delay: 1.5s; }
+        .sparkle:nth-child(6) { top: 60%; right: 8%; animation-delay: 2.5s; }
         
-        @media (max-width: 640px) {
+        /* Copy notification */
+        .copy-notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(139, 115, 85, 0.95);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-notification.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .container {
-                padding: 30px 20px;
+                padding: 20px 15px;
             }
             
-            .title {
-                font-size: 2rem;
+            .hero {
+                padding: 40px 25px;
             }
             
-            .donation-grid {
-                grid-template-columns: 1fr;
+            .hero-title {
+                font-size: 2.2rem;
             }
             
-            .donation-btn {
-                padding: 15px 20px;
-                font-size: 1rem;
+            .hero-subtitle {
+                font-size: 1.1rem;
             }
             
-            .copy-item {
-                flex-direction: column;
+            .sidebar {
+                width: 300px;
+                padding: 80px 20px 20px;
+            }
+            
+            .quick-contact {
+                bottom: 20px;
                 gap: 10px;
-                text-align: center;
             }
             
-            .contact-buttons {
-                flex-direction: column;
-                align-items: center;
+            .contact-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
             }
             
-            .contact-btn {
-                width: 100%;
-                max-width: 250px;
-                justify-content: center;
+            .sidebar {
+                width: 280px;
+                right: -280px;
+            }
+            
+            .hamburger {
+                top: 15px;
+                right: 15px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Hamburger Menu -->
+    <button class="hamburger" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <!-- Sidebar -->
+    <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+    <div class="sidebar">
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">💰 Donations</h3>
+            <button class="sidebar-item" onclick="openLink('https://ko-fi.com/roshan0746')">
+                <span class="icon">☕</span>
+                <span>Buy us a Coffee</span>
+            </button>
+            <button class="sidebar-item" onclick="openLink('https://paypal.me/Roshan0746?country.x=IN&locale.x=en_GB')">
+                <span class="icon">💳</span>
+                <span>PayPal</span>
+            </button>
+            <button class="sidebar-item" onclick="openLink('upi://pay?pa=rsagvekar36-4@okhdfcbank')">
+                <span class="icon">🏦</span>
+                <span>UPI Payment</span>
+            </button>
+            <button class="sidebar-item" onclick="copyToClipboard('1820016018186')">
+                <span class="icon">🏧</span>
+                <span>Bank Mandiri</span>
+            </button>
+            <button class="sidebar-item" onclick="copyToClipboard('901390271248')">
+                <span class="icon">🏦</span>
+                <span>SeaBank</span>
+            </button>
+            <button class="sidebar-item" onclick="copyToClipboard('082258901971')">
+                <span class="icon">💰</span>
+                <span>DANA</span>
+            </button>
+        </div>
+        
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">📞 Contact</h3>
+            <button class="sidebar-item" onclick="openLink('mailto:rsagvekar36@gmail.com')">
+                <span class="icon">📧</span>
+                <span>Email Roshan</span>
+            </button>
+            <button class="sidebar-item" onclick="openLink('mailto:bias.khaliq@gmail.com')">
+                <span class="icon">📧</span>
+                <span>Email Khaliq</span>
+            </button>
+            <button class="sidebar-item" onclick="openLink('https://t.me/RoshanGP4A')">
+                <span class="icon">💬</span>
+                <span>Roshan Telegram</span>
+            </button>
+            <button class="sidebar-item" onclick="openLink('https://t.me/VOLD_NAMESPACE')">
+                <span class="icon">💬</span>
+                <span>Khaliq Telegram</span>
+            </button>
+            <button class="sidebar-item" onclick="openLink('https://t.me/roshan_0746')">
+                <span class="icon">💬</span>
+                <span>Roshan ID</span>
+            </button>
+        </div>
+        
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">👥 Support Groups</h3>
+            <button class="sidebar-item" onclick="openLink('https://t.me/RoshanGP4A')">
+                <span class="icon">👥</span>
+                <span>Main Support Group</span>
+            </button>
+            <button class="sidebar-item" onclick="openLink('https://github.com/Bias8145/Morpheus')">
+                <span class="icon">💻</span>
+                <span>GitHub Repository</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
     <div class="container">
         <div class="sparkle">✨</div>
         <div class="sparkle">💫</div>
         <div class="sparkle">⭐</div>
         <div class="sparkle">✨</div>
+        <div class="sparkle">💫</div>
+        <div class="sparkle">⭐</div>
         
-        <div class="header">
+        <div class="hero">
             <div class="heart-icon">💖</div>
-            <h1 class="title">Support ROM Development</h1>
+            <h1 class="hero-title">Support ROM Development</h1>
+            <p class="hero-subtitle">Building the future of Android</p>
             <div class="developers">
                 <strong>Developers:</strong> Khaliq & Roshan
             </div>
-            <div class="description">
-                Love our Project? Your support means the world to us! 
+            <p class="hero-description">
+                Love our project? Your support means the world to us! 
                 Help us continue developing high-quality ROMs with consistent updates and new features.
-                Choose your preferred donation method below.
-            </div>
-        </div>
-        
-        <div class="donation-methods">
-            <div class="method-category">
-                <h2 class="category-title">🌍 International Donations</h2>
-                <div class="donation-grid">
-                    <button class="donation-btn kofi-btn" onclick="openLink('https://ko-fi.com/roshan0746')">
-                        <span class="icon">☕</span>
-                        <span>Buy us a Coffee</span>
-                    </button>
-                    <button class="donation-btn paypal-btn" onclick="openLink('https://paypal.me/Roshan0746?country.x=IN&locale.x=en_GB')">
-                        <span class="icon">💳</span>
-                        <span>PayPal</span>
-                    </button>
-                </div>
-            </div>
-            
-            <div class="method-category">
-                <h2 class="category-title">🇲🇨 Indonesian & 🇮🇳 Indian Donations</h2>
-                <div class="donation-grid">
-                    <button class="donation-btn upi-btn" onclick="openLink('upi://pay?pa=rsagvekar36-4@okhdfcbank')">
-                        <span class="icon">🏦</span>
-                        <span>UPI Payment</span>
-                    </button>
-                    <button class="donation-btn mandiri-btn" onclick="copyToClipboard('1820016018186', this)">
-                        <span class="icon">🏧</span>
-                        <span>Bank Mandiri</span>
-                    </button>
-                    <button class="donation-btn seabank-btn" onclick="copyToClipboard('901390271248', this)">
-                        <span class="icon">🏦</span>
-                        <span>SeaBank</span>
-                    </button>
-                    <button class="donation-btn dana-btn" onclick="copyToClipboard('082258901971', this)">
-                        <span class="icon">💰</span>
-                        <span>DANA</span>
-                    </button>
-                </div>
-            </div>
-            
-            <div class="copy-section">
-                <h3 class="copy-title">📋 Copy Payment Details</h3>
-                <div class="copy-item">
-                    <span>UPI ID: rsagvekar36-4@okhdfcbank</span>
-                    <button class="copy-btn" onclick="copyToClipboard('rsagvekar36-4@okhdfcbank', this)">Copy</button>
-                </div>
-                <div class="copy-item">
-                    <span>Bank Mandiri: 1820016018186</span>
-                    <button class="copy-btn" onclick="copyToClipboard('1820016018186', this)">Copy</button>
-                </div>
-                <div class="copy-item">
-                    <span>SeaBank: 901390271248</span>
-                    <button class="copy-btn" onclick="copyToClipboard('901390271248', this)">Copy</button>
-                </div>
-                <div class="copy-item">
-                    <span>DANA: 082258901971</span>
-                    <button class="copy-btn" onclick="copyToClipboard('082258901971', this)">Copy</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <div class="contact-info">
-                <div class="contact-section">
-                    <div class="contact-title">📧 Contact Us</div>
-                    <div class="contact-buttons">
-                        <button class="contact-btn email-btn" onclick="openLink('mailto:rsagvekar36@gmail.com')">
-                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                            </svg>
-                            <span>Email Roshan</span>
-                        </button>
-                        <button class="contact-btn email-btn" onclick="openLink('mailto:bias.khaliq@gmail.com')">
-                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                            </svg>
-                            <span>Email Bias</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="contact-section">
-                    <div class="contact-title">💬 Telegram</div>
-                    <div class="contact-buttons">
-                        <button class="contact-btn telegram-btn" onclick="openLink('https://t.me/VOLD_NAMESPACE')">
-                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                            </svg>
-                            <span>Khaliq Telegram ID</span>
-                        </button>
-                        <button class="contact-btn telegram-btn" onclick="openLink('https://t.me/RoshanGP4A')">
-                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                            </svg>
-                            <span>Roshan Telegram ID</span>
-                        <button class="contact-btn telegram-btn" onclick="openLink('https://t.me/roshan_0746')">
-                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                            </svg>
-                            <span>Support Sunfish</span>
-                        </button>
-                        <button class="contact-btn telegram-btn" onclick="openLink('https://t.me/pixel4seriesupdates')">
-                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                            </svg>
-                            <span>Pixel 4 Series</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="contact-section">
-                    <div class="contact-title">🛠️ GitHub</div>
-                    <div class="contact-buttons">
-                        <button class="contact-btn github-btn" onclick="openLink('https://github.com/Bias8145')">
-                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            <span>Bias GitHub</span>
-                        </button>
-                        <button class="contact-btn github-btn" onclick="openLink('https://github.com/Roshan0746')">
-                            <svg class="contact-logo" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            <span>Roshan GitHub</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <p class="footer-text">
-                <strong>Thank you for your support!</strong><br>
-                Every donation helps us continue developing amazing ROMs for the community 🙏
             </p>
+            <button class="cta-button" onclick="toggleSidebar()">
+                <span>💰</span>
+                <span>View Donation Methods</span>
+            </button>
         </div>
     </div>
     
+    <!-- Quick Contact Icons -->
+    <div class="quick-contact">
+        <a href="mailto:rsagvekar36@gmail.com" class="contact-icon" data-tooltip="Email Roshan">📧</a>
+        <a href="mailto:bias.khaliq@gmail.com" class="contact-icon" data-tooltip="Email Khaliq">📧</a>
+        <a href="https://t.me/RoshanGP4A" class="contact-icon" data-tooltip="Roshan Telegram">💬</a>
+        <a href="https://t.me/VOLD_NAMESPACE" class="contact-icon" data-tooltip="Khaliq Telegram">💬</a>
+    </div>
+    
+    <!-- Copy Notification -->
+    <div class="copy-notification" id="copyNotification">
+        Copied to clipboard! 📋
+    </div>
+    
     <script>
+        function toggleSidebar() {
+            const hamburger = document.querySelector('.hamburger');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            hamburger.classList.toggle('active');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+        
+        function closeSidebar() {
+            const hamburger = document.querySelector('.hamburger');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            hamburger.classList.remove('active');
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+        
         function openLink(url) {
             window.open(url, '_blank');
         }
         
-        function copyToClipboard(text, button) {
+        function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(function() {
-                const originalHTML = button.innerHTML;
-                button.innerHTML = '<span class="icon">✅</span><span>Copied!</span>';
-                button.classList.add('copied');
-                setTimeout(function() {
-                    button.innerHTML = originalHTML;
-                    button.classList.remove('copied');
-                }, 2000);
-            }).catch(function() {
+                showCopyNotification();
+            }).catch(function(err) {
                 // Fallback for older browsers
                 const textArea = document.createElement('textarea');
                 textArea.value = text;
@@ -606,16 +557,35 @@
                 textArea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
-                
-                const originalHTML = button.innerHTML;
-                button.innerHTML = '<span class="icon">✅</span><span>Copied!</span>';
-                button.classList.add('copied');
-                setTimeout(function() {
-                    button.innerHTML = originalHTML;
-                    button.classList.remove('copied');
-                }, 2000);
+                showCopyNotification();
             });
         }
+        
+        function showCopyNotification() {
+            const notification = document.getElementById('copyNotification');
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+        
+        // Close sidebar with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeSidebar();
+            }
+        });
+        
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>
