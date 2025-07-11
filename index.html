@@ -6,42 +6,44 @@
     <meta name="description" content="Support Khaliq & Roshan's custom ROM development for Pixel 4 series and Pixel 4a.">
     <meta name="keywords" content="custom ROM, Pixel 4, Pixel 4a, Android, donation">
     <title>Support ROM Development - Khaliq & Roshan</title>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Light Theme Colors */
             --bg-primary: linear-gradient(135deg, #f7f9fc 0%, #e9ecef 25%, #dee2e6 50%, #d5d9dd 75%, #ced4da 100%);
-            --bg-secondary: rgba(255, 255, 255, 0.85);
+            --bg-secondary: rgba(255, 255, 255, 0.9);
             --bg-sidebar: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #f1f3f5 100%);
             --bg-button: linear-gradient(45deg, #2b3a55, #3a506b);
-            --text-primary: #1e2a44;
+            --text-primary: #1a263f;
             --text-secondary: #526278;
             --text-light: #ffffff;
-            --accent-color: #1abc9c;
+            --accent-color: #16a085;
             --hamburger-bg: rgba(43, 58, 85, 0.9);
             --card-border: rgba(43, 58, 85, 0.15);
             --contact-bg: rgba(43, 58, 85, 0.9);
             --shadow-color: rgba(0, 0, 0, 0.12);
+            --border-gradient: linear-gradient(45deg, #16a085, #2b3a55);
         }
 
         [data-theme="dark"] {
             /* Dark Theme Colors */
             --bg-primary: linear-gradient(135deg, #1c2526 0%, #2b3435 25%, #353f40 50%, #3e4a4b 75%, #485455 100%);
-            --bg-secondary: rgba(255, 255, 255, 0.12);
+            --bg-secondary: rgba(255, 255, 255, 0.15);
             --bg-sidebar: linear-gradient(180deg, #2b3435 0%, #353f40 50%, #485455 100%);
-            --bg-button: linear-gradient(45deg, #e67e22, #f39c12);
-            --text-primary: #ecf0f1;
-            --text-secondary: rgba(255, 255, 255, 0.75);
+            --bg-button: linear-gradient(45deg, #d35400, #e67e22);
+            --text-primary: #f5f6f5;
+            --text-secondary: rgba(255, 255, 255, 0.7);
             --text-light: #ffffff;
-            --accent-color: #e67e22;
-            --hamburger-bg: rgba(230, 126, 34, 0.9);
+            --accent-color: #d35400;
+            --hamburger-bg: rgba(211, 84, 0, 0.9);
             --card-border: rgba(255, 255, 255, 0.15);
-            --contact-bg: rgba(230, 126, 34, 0.9);
+            --contact-bg: rgba(211, 84, 0, 0.9);
             --shadow-color: rgba(0, 0, 0, 0.35);
+            --border-gradient: linear-gradient(45deg, #d35400, #e67e22);
         }
 
         * {
@@ -57,7 +59,7 @@
             line-height: 1.7;
             overflow-x: hidden;
             color: var(--text-primary);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .container {
@@ -65,8 +67,6 @@
             margin: 0 auto;
             padding: 50px 20px;
             position: relative;
-            opacity: 1;
-            visibility: visible;
         }
 
         /* Preloader */
@@ -116,7 +116,7 @@
             cursor: pointer;
             backdrop-filter: blur(12px);
             box-shadow: 0 6px 14px var(--shadow-color);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .hamburger:hover {
@@ -129,7 +129,7 @@
             height: 3px;
             background: var(--text-light);
             margin: 6px 0;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             border-radius: 3px;
         }
 
@@ -154,10 +154,10 @@
             height: 100vh;
             background: var(--bg-sidebar);
             box-shadow: -6px 0 25px var(--shadow-color);
-            transition: right 0.3s ease, opacity 0.3s ease;
+            transition: right 0.4s ease, opacity 0.4s ease;
             z-index: 999;
             overflow-y: auto;
-            padding: 90px 30px 30px;
+            padding: 80px 30px 30px;
             visibility: hidden;
             opacity: 0;
         }
@@ -177,7 +177,7 @@
             background: rgba(0, 0, 0, 0.6);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             z-index: 998;
             backdrop-filter: blur(6px);
         }
@@ -189,27 +189,24 @@
 
         /* Theme Toggle */
         .theme-toggle {
-            position: absolute;
-            top: 30px;
-            right: 80px;
+            position: fixed;
+            top: 25px;
+            left: 25px;
             background: var(--bg-secondary);
             border: 1px solid var(--card-border);
             border-radius: 10px;
-            padding: 10px 14px;
+            padding: 8px 12px;
             cursor: pointer;
             color: var(--text-primary);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar.active .theme-toggle {
-            right: 25px;
+            transition: all 0.4s ease;
         }
 
         .theme-toggle:hover {
             background: var(--accent-color);
             color: var(--text-light);
+            transform: scale(1.05);
         }
 
         /* Main Menu */
@@ -238,7 +235,7 @@
             cursor: pointer;
             font-size: 0.95rem;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .back-button:hover {
@@ -272,7 +269,7 @@
             cursor: pointer;
             font-size: 1.05rem;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             width: 100%;
             text-align: left;
             position: relative;
@@ -299,7 +296,7 @@
             white-space: nowrap;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             z-index: 1000;
         }
 
@@ -321,9 +318,10 @@
             background: var(--bg-secondary);
             backdrop-filter: blur(20px);
             border-radius: 24px;
-            padding: 70px 50px;
+            padding: 80px 60px;
             box-shadow: 0 24px 48px var(--shadow-color);
-            border: 1px solid var(--card-border);
+            border: 2px solid transparent;
+            border-image: var(--border-gradient) 1;
             position: relative;
             overflow: hidden;
             opacity: 0;
@@ -353,29 +351,12 @@
             100% { transform: rotate(360deg); }
         }
 
-        .hero-title-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .heart-icon {
-            width: 48px;
-            height: 48px;
-            animation: heartbeat 2s ease-in-out infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-        }
-
         .hero-title {
             color: var(--text-primary);
             font-size: 3.2rem;
-            font-weight: 700;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            margin-bottom: 20px;
             text-shadow: 0 2px 5px var(--shadow-color);
             position: relative;
             z-index: 1;
@@ -407,7 +388,7 @@
             color: var(--text-secondary);
             font-size: 1.15rem;
             font-weight: 400;
-            margin-bottom: 45px;
+            margin-bottom: 50px;
             line-height: 1.8;
             position: relative;
             z-index: 1;
@@ -456,15 +437,35 @@
             margin-bottom: 20px;
         }
 
+        .rating-input.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
         .star {
             width: 32px;
             height: 32px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .star:hover, .star.selected {
             transform: scale(1.1);
+        }
+
+        .rating-message {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 400;
+            margin-top: 10px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .rating-message.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .rating-display {
@@ -502,7 +503,7 @@
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             box-shadow: 0 10px 20px var(--shadow-color);
             position: relative;
             z-index: 1;
@@ -529,7 +530,7 @@
             z-index: 1001;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .copy-notification.show {
@@ -569,7 +570,7 @@
         .footer-link {
             color: var(--text-primary);
             font-size: 1.3rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .footer-link:hover {
@@ -584,20 +585,11 @@
             }
 
             .hero {
-                padding: 50px 30px;
+                padding: 60px 40px;
             }
 
             .hero-title {
                 font-size: 2.4rem;
-            }
-
-            .hero-title-container {
-                gap: 12px;
-            }
-
-            .heart-icon {
-                width: 40px;
-                height: 40px;
             }
 
             .hero-subtitle {
@@ -610,26 +602,15 @@
             }
 
             .theme-toggle {
-                right: 70px;
-            }
-
-            .sidebar.active .theme-toggle {
-                right: 25px;
+                left: 15px;
+                padding: 7px 10px;
+                font-size: 0.9rem;
             }
         }
 
         @media (max-width: 480px) {
             .hero-title {
                 font-size: 1.9rem;
-            }
-
-            .hero-title-container {
-                gap: 10px;
-            }
-
-            .heart-icon {
-                width: 32px;
-                height: 32px;
             }
 
             .hero-subtitle {
@@ -647,8 +628,8 @@
             }
 
             .theme-toggle {
-                right: 60px;
-                padding: 8px 12px;
+                left: 15px;
+                padding: 6px 8px;
                 font-size: 0.85rem;
             }
 
@@ -664,6 +645,10 @@
             .rating-star {
                 width: 20px;
                 height: 20px;
+            }
+
+            .rating-message {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -681,14 +666,14 @@
         <span></span>
     </button>
 
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" aria-label="Toggle Theme" onclick="toggleTheme()">
+        <i class="fas fa-sun"></i> <span id="theme-text">Light</span>
+    </button>
+
     <!-- Sidebar -->
     <div class="sidebar-overlay" onclick="closeSidebar()"></div>
     <div class="sidebar">
-        <!-- Theme Toggle -->
-        <button class="theme-toggle" aria-label="Toggle Theme" onclick="toggleTheme()">
-            <i class="fas fa-sun"></i> <span id="theme-text">Light</span>
-        </button>
-
         <!-- Main Menu -->
         <div class="main-menu">
             <div class="sidebar-section">
@@ -801,18 +786,7 @@
     <!-- Main Content -->
     <div class="container">
         <div class="hero">
-            <div class="hero-title-container">
-                <svg class="heart-icon" viewBox="0 0 24 24" fill="url(#heart-gradient)" stroke="var(--accent-color)" stroke-width="1.5">
-                    <defs>
-                        <linearGradient id="heart-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color: var(--accent-color); stop-opacity: 0.9" />
-                            <stop offset="100%" style="stop-color: var(--text-primary); stop-opacity: 0.7" />
-                        </linearGradient>
-                    </defs>
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
-                <h1 class="hero-title">Support ROM Development</h1>
-            </div>
+            <h1 class="hero-title">Support ROM Development</h1>
             <p class="hero-subtitle">Delivering stable Android experiences</p>
             <div class="developers">
                 <strong>Developers:</strong> Khaliq & Roshan
@@ -831,7 +805,7 @@
             </p>
             <div class="rating-section">
                 <h3>Community Satisfaction Rating</h3>
-                <div class="rating-input">
+                <div class="rating-input" id="ratingInput">
                     <svg class="star" data-value="1" onclick="submitRating(1)" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="1.5">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                     </svg>
@@ -848,6 +822,7 @@
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                     </svg>
                 </div>
+                <p class="rating-message" id="ratingMessage">You’ve already submitted a rating.</p>
                 <div class="rating-display">
                     <span class="rating-text" id="averageRating">0.0/5 (0 votes)</span>
                     <div class="rating-stars" id="ratingStars"></div>
@@ -879,6 +854,37 @@
     </div>
 
     <script>
+        // Cookie Management
+        function setCookie(name, value, days) {
+            try {
+                let expires = "";
+                if (days) {
+                    const date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Strict";
+            } catch (error) {
+                console.error('Error setting cookie:', error);
+            }
+        }
+
+        function getCookie(name) {
+            try {
+                const nameEQ = name + "=";
+                const ca = document.cookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            } catch (error) {
+                console.error('Error getting cookie:', error);
+                return null;
+            }
+        }
+
         // Theme Management
         function initializeTheme() {
             try {
@@ -1020,20 +1026,19 @@
         // Voting/Rating System
         function submitRating(rating) {
             try {
+                if (getCookie('ratingSubmitted')) return; // Prevent multiple submissions
+
                 // Store rating in localStorage
                 let ratings = JSON.parse(localStorage.getItem('ratings') || '[]');
                 ratings.push(rating);
                 localStorage.setItem('ratings', JSON.stringify(ratings));
 
+                // Set cookie to prevent further ratings
+                setCookie('ratingSubmitted', 'true', 365);
+
                 // Update UI
                 updateRatingDisplay();
-
-                // Highlight selected stars
-                document.querySelectorAll('.star').forEach(star => {
-                    const value = parseInt(star.getAttribute('data-value'));
-                    star.setAttribute('fill', value <= rating ? 'var(--accent-color)' : 'none');
-                    star.classList.toggle('selected', value <= rating);
-                });
+                disableRatingInput();
             } catch (error) {
                 console.error('Error submitting rating:', error);
             }
@@ -1085,6 +1090,28 @@
             }
         }
 
+        function disableRatingInput() {
+            try {
+                const ratingInput = document.getElementById('ratingInput');
+                const ratingMessage = document.getElementById('ratingMessage');
+                if (!ratingInput || !ratingMessage) return;
+                ratingInput.classList.add('disabled');
+                ratingMessage.classList.add('show');
+            } catch (error) {
+                console.error('Error disabling rating input:', error);
+            }
+        }
+
+        function checkRatingStatus() {
+            try {
+                if (getCookie('ratingSubmitted')) {
+                    disableRatingInput();
+                }
+            } catch (error) {
+                console.error('Error checking rating status:', error);
+            }
+        }
+
         function hidePreloader() {
             try {
                 const preloader = document.querySelector('.preloader');
@@ -1103,6 +1130,7 @@
             try {
                 initializeTheme();
                 updateRatingDisplay();
+                checkRatingStatus();
                 hidePreloader();
                 const sidebar = document.querySelector('.sidebar');
                 const overlay = document.querySelector('.sidebar-overlay');
